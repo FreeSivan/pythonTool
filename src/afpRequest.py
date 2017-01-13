@@ -30,9 +30,10 @@ def afpIdLoop(afpName):
 def afpFileLoop(afpHome):
     for f in os.listdir(afpHome):
         print "f name = " + f
-        if not os.path.isfile(f):
+        fName=afpHome+"/" + f
+        if not os.path.isfile(fName):
             continue
-        tmp = f[-4:]
+        tmp = fName[-4:]
         print "tmp = " + tmp
         if f[-4:] != AFP_SUFFIX:
             continue
@@ -50,7 +51,7 @@ def mainLoop(afpHome, outName):
             str += "|"
         str += '\n'
         outFile.write(str)
-    outFile.close();
+    outFile.close()
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
