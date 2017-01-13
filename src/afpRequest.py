@@ -39,14 +39,13 @@ def afpFileLoop(afpHome):
 def mainLoop(afpHome, outName):
     outFile = open(outName, "w+")
     for f in afpFileLoop(afpHome):
-        print "f = "+f
-        str = "" + f + ":"
+        line = "" + f + ":"
         for id in afpIdLoop(f):
             print "id = %d", id
-            str += str(id)
-            str += "|"
-        str += '\n'
-        outFile.write(str)
+            line += str(id)
+            line += "|"
+        line += '\n'
+        outFile.write(line)
     outFile.close()
 
 if __name__ == "__main__":
