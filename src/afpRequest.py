@@ -32,6 +32,8 @@ def afpFileLoop(afpHome):
         print "f name = " + f
         if not os.path.isfile(f):
             continue
+        tmp = f[-4:]
+        print "tmp = " + tmp
         if f[-4:] != AFP_SUFFIX:
             continue
         print "f name = " + f
