@@ -43,7 +43,7 @@ def mainLoop(afpHome, outName):
         print "f = "+f
         str = "" + f + ":"
         for id in afpIdLoop(f):
-            print "id = " + id
+            print "id = %d", id
             str += id
             str += "|"
         str += '\n'
