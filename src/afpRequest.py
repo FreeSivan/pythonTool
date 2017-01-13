@@ -29,16 +29,13 @@ def afpIdLoop(afpName):
 
 def afpFileLoop(afpHome):
     for f in os.listdir(afpHome):
-        print "f name = " + f
-        fName=afpHome+"/" + f
+        fName = afpHome+"/" + f
+        print "f name = " + fName
         if not os.path.isfile(fName):
             continue
-        tmp = fName[-4:]
-        print "tmp = " + tmp
         if f[-4:] != AFP_SUFFIX:
             continue
-        print "f name = " + f
-        yield f
+        yield fName
 
 def mainLoop(afpHome, outName):
     outFile = open(outName, "w+")
