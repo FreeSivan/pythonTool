@@ -20,14 +20,12 @@ def bufferLoop(afpFile, len):
         afpBuf = afpFile.read(MAX_AFP_SIZE)
         yield afpBuf
 
-def dealEachAfp(afpName, outFile):
+def dealEachAfp(afpName):
     size = os.path.getsize(afpName)
     fp = open(afpName, 'rb')
-    lst = []
 
     for afpBuf in bufferLoop(fp, size):
-        lst.append(singleRequest(afpBuf, size))
-    return lst
+        yield singleRequest(afpBuf, size)
 
 def afpFileLoop(afpHome):
     for f in os.listdir(afpHome):
@@ -40,7 +38,12 @@ def afpFileLoop(afpHome):
 def mainLoop(afpHome, outName):
     outFile = open(outName, "w+")
     for f in afpFileLoop(afpHome):
-        dealEachAfp(f, outFile)
+        str = "" + f + ":"
+        for id in dealEachAfp(f):
+            str += id
+            str += "|"
+        str += '\n'
+        outFile.write(str)
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
