@@ -6,17 +6,15 @@ import urllib2
 
 MAX_AFP_SIZE = 768
 AFP_SUFFIX = ".afp"
-HTTP_URL = "http://finger.xiami.com/s/single_search?len="
+HTTP_URL = "http://finger.xiami.com/s/single_search?len=768"
 
 def offsetLoop(fileSize):
     yield ((fileSize/4)/8)*4
     yield (4*((fileSize/4)/8))*4
     yield (7*((fileSize/4)/8))*4
 
-def singleRequest(afp, MAX_AFP_SIZE):
-    realUrl = HTTP_URL + str(MAX_AFP_SIZE)
-    print realUrl
-    request = urllib2.Request(realUrl)
+def singleRequest(afp):
+    request = urllib2.Request(HTTP_URL)
     print request
     request.add_data(afp)
     response = urllib2.urlopen(request)
@@ -33,7 +31,7 @@ def afpIdLoop(afpName):
     size = os.path.getsize(afpName)
     fp = open(afpName, 'rb')
     for afpBuf in bufferLoop(fp, size):
-        yield singleRequest(afpBuf, size)
+        yield singleRequest(afpBuf)
 
 def afpFileLoop(afpHome):
     for f in os.listdir(afpHome):
