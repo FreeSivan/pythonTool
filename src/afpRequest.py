@@ -14,9 +14,9 @@ def offsetLoop(fileSize):
     yield (7*((fileSize/4)/8))*4
 
 def singleRequest(afp):
-    tmp_str = str(afp, encoding = "utf-8")
-    print str
-    headers = {'afp': str(afp, encoding = "utf-8")}
+    tmp_str = str(afp)
+    print tmp_str
+    headers = {'afp': str(afp)}
     request = urllib2.Request(url = HTTP_URL, headers = headers)
     print request
     print len(afp)
