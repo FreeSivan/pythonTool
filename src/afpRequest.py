@@ -3,6 +3,7 @@ __author__ = 'xiwen.yxw'
 import sys
 import os
 import urllib2
+from poster.encode import multipart_encode
 
 MAX_AFP_SIZE = 768
 AFP_SUFFIX = ".afp"
@@ -14,7 +15,8 @@ def offsetLoop(fileSize):
     yield (7*((fileSize/4)/8))*4
 
 def singleRequest(afp):
-    request = urllib2.Request(url = HTTP_URL, data = afp)
+    dataGen, headers = multipart_encode({'afp': afp})
+    request = urllib2.Request(HTTP_URL, dataGen, headers)
     print request
     print len(afp)
     request.add_data(afp)
