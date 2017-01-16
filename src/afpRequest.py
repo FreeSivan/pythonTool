@@ -15,7 +15,7 @@ def offsetLoop(fileSize):
     yield (7*((fileSize/4)/8))*4
 
 def singleRequest(afp, MAX_AFP_SIZE):
-    realUrl = HTTP_URL + MAX_AFP_SIZE
+    realUrl = HTTP_URL + str(MAX_AFP_SIZE)
     request = urllib2.Request(realUrl)
     print request
     request.add_data(afp)
