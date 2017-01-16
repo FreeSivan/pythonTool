@@ -2,7 +2,6 @@ __author__ = 'xiwen.yxw'
 
 import sys
 import os
-import urllib
 import urllib2
 
 MAX_AFP_SIZE = 768
@@ -16,6 +15,7 @@ def offsetLoop(fileSize):
 
 def singleRequest(afp, MAX_AFP_SIZE):
     realUrl = HTTP_URL + str(MAX_AFP_SIZE)
+    print realUrl
     request = urllib2.Request(realUrl)
     print request
     request.add_data(afp)
