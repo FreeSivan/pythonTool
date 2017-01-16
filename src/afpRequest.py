@@ -14,11 +14,11 @@ def offsetLoop(fileSize):
     yield (7*((fileSize/4)/8))*4
 
 def singleRequest(afp):
-    request = urllib2.Request(HTTP_URL)
+    request = urllib2.Request(url = HTTP_URL, data = afp)
     print request
     print len(afp)
     request.add_data(afp)
-    response = urllib2.urlopen(url = request, data = afp)
+    response = urllib2.urlopen(request)
     res = response.read()
     print res
     return -1
