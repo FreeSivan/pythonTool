@@ -4,6 +4,7 @@ import sys
 import os
 import urllib2
 from poster.encode import multipart_encode
+from poster.streaminghttp import register_openers
 
 MAX_AFP_SIZE = 768
 AFP_SUFFIX = ".afp"
