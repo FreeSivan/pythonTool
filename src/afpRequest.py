@@ -15,6 +15,7 @@ def offsetLoop(fileSize):
     yield (7*((fileSize/4)/8))*4
 
 def singleRequest(afp):
+    register_openers()
     dataGen, headers = multipart_encode({'afp': afp})
     request = urllib2.Request(HTTP_URL, dataGen, headers)
     print request
