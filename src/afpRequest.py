@@ -19,7 +19,6 @@ def singleRequest(afp):
     request = urllib2.Request(HTTP_URL, dataGen, headers)
     print request
     print len(afp)
-    request.add_data(afp)
     response = urllib2.urlopen(request)
     res = response.read()
     print res
